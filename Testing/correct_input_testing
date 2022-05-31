@@ -1,0 +1,105 @@
+#!/bin/bash
+clear
+
+#Test1
+echo "********************************************************************************"
+echo "                      Test 1: Help Page (-h)"
+echo "********************************************************************************"
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -h"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -h
+
+#Test2
+echo "********************************************************************************"
+echo "                      Test 2: Help Page (--help)"
+echo " Used arguments:"
+echo " ../debug/Lab3_2 --help"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 --help
+
+#Test 3
+echo "********************************************************************************"
+echo "                Test 3: Create mode. 3 lines table to test_file1"
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -c 3 test_file1"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -c 3 test_file1
+
+#Test 4
+echo "********************************************************************************"
+echo "                Test 4: Read mode. 3 lines table in test_file1"
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -r 3 test_file1"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -r 3 test_file1
+
+#Test 5
+echo "********************************************************************************"
+echo "              Test 5: Read mode. [N] is more than contents file_test1."
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -r 10 test_file1"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -r 10 test_file1
+
+#Test 6
+echo "********************************************************************************"
+echo "              Test 6: Read mode. [N] is less than contents test_file1."
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -r 1 test_file1"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -r 1 test_file1
+
+#Test 7
+echo "********************************************************************************"
+echo "           Test 7: Create mode. Create 10 lines table to test_file2."
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -c 10 test_file2"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -c 10 test_file2
+
+#Test 8
+echo "********************************************************************************"
+echo "           Test 8: Read mode. 10 lines table in test_file2."
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -r 10 test_file2"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -r 10 test_file2
+
+#Test 9
+echo "********************************************************************************"
+echo "           Test 9: Read mode. [N] is more than contents file_test2."
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -r 20 test_file2"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -r 20 test_file2
+
+#Test 10
+echo "********************************************************************************"
+echo "           Test 10: Read mode. [N] is less than contents file_test2."
+echo " Used arguments:"
+echo " ../debug/Lab3_2 -r 5 test_file2"
+echo "********************************************************************************"
+echo " Press any key to start Lab3_2: "
+read -n 1
+../debug/Lab3_2 -r 5 test_file2
+
+echo " Testing complete"

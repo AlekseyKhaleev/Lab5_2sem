@@ -1,0 +1,271 @@
+
+********************************************************************************
+                      Test 1: [N] integer, but 1st argument unexpected
+ Used arguments:
+ ../debug/Lab3_2 -o 12 test_file
+********************************************************************************
+
+ Terminal out: 
+
+
+Syntax Exception Type 1 : 3 arguments given.
+First argument is wrong. Among other things, check your keyboard layout
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+                         Test 2: [N] argument not an integer
+ Used arguments:
+ ../debug/Lab3_2 -o qweqwe 123
+********************************************************************************
+
+ Terminal out: 
+
+
+Syntax Exception Type 2 : 3 arguments given.
+The specified number of lines must be an integer
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+                  Test 3: [N] argument less then or equal to 0
+********************************************************************************
+ 3.1) Used arguments:
+ ../debug/Lab3_2 -c -123 test_file
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 3 : 3 arguments given.
+The specified number of lines can't be less than or equal to zero
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+ 3.2) Used arguments:
+ ../debug/Lab3_2 -r 0 test_file
+********************************************************************************
+
+ Terminal out: 
+
+
+Syntax Exception Type 3 : 3 arguments given.
+The specified number of lines can't be less than or equal to zero
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+                      Test 4: [N] is floating point number
+********************************************************************************
+ 4.1) Used arguments:
+ ../debug/Lab3_2 -c 3.2 test_file
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 4 : 3 arguments given.
+It is not possible to use a floating point number to specify the number of lines
+You should also use only digits for an integer
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+ 4.2) Used arguments:
+ ../debug/Lab3_2 -c 3,2 test_file
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 4 : 3 arguments given.
+It is not possible to use a floating point number to specify the number of lines
+You should also use only digits for an integer
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+                      Test 5: Trying to open file that doesn't exist 
+ Used arguments:
+ ../debug/Lab3_2 -r 5 qweqweqweqw
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 5 : 3 arguments given.
+Unable to open or create specified file. Check that the specified file exists
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/ReadInstance the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+                      Test 6: Trying to read empty file
+ Used arguments:
+ ../debug/Lab3_2 -r 5 empty_file
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 6 : 3 arguments given.
+The specified file is empty
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+           Test 7: Trying to open a file created in another application
+ Used arguments:
+ ../debug/Lab3_2 -r 5 wrong_file
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 7 : 3 arguments given.
+The specified file was not created in this program
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+                        Test 8: wrong number of arguments
+********************************************************************************
+ 8.1) No arguments.Used arguments:
+ ../debug/Lab3_2
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 9 : 0 arguments given.
+Wrong number of arguments
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+ 8.2) To many arguments. Creating. Used arguments:
+ ../debug/Lab3_2 -c 12 test_file mode
+********************************************************************************
+
+ Terminal out: 
+
+
+Syntax Exception Type 9 : 4 arguments given.
+Wrong number of arguments
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+ Press any key to continue: 
+
+********************************************************************************
+ 8.3) Too many arguments. Reading. Used arguments:
+ ../debug/Lab3_2 -r 12 test_file mode
+********************************************************************************
+
+ Terminal out: 
+
+Syntax Exception Type 9 : 4 arguments given.
+Wrong number of arguments
+
+Correct arguments for run this app:
+
+--help or -h : help mode
+-с [N] [file_name] : create spreadsheet mode
+-r [N] [file_name] : read spreadsheet mode
+
+N – the number of records;
+file_name – file name or full path to save/read the table;
+
+
+ Testing complete
+ Results saved in wrong_input_testing.log
