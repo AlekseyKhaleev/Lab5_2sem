@@ -9,6 +9,9 @@ using namespace Person_const;
 
 PrsPtr IPerson::CreateInstance(int id){
     switch(id/1000){
+        case 11: return std::make_shared<Teacher>();
+        case 12: return std::make_shared<Assistant>();
+        case 13: return std::make_shared<HouseKeeper>();
         case 21: return std::make_shared<Bachelor>();
         case 22: return std::make_shared<Master>();
         case 23: return std::make_shared<Graduate>();
@@ -25,8 +28,6 @@ Person::~Person() = default;
 void Person::set_surname() {std::cin >> _surname;}
 void Person::set_name() {std::cin>>_name;}
 void Person::set_id(int id) {_id = std::to_string(id);}
-void Person::set_id(char *id) {_id = id;}
-
 
 /* Student */
 Student::Student(){_category="студент";}
@@ -37,24 +38,38 @@ void Student::set_exp() {
     _exp += " курс";
 }
 
-string Student::get_exp() {return _exp;}
-string Student::get_category() {return _category;}
-
 //sub_class
 Bachelor::Bachelor():Student(){_info="бакалавриат";}
 Bachelor::~Bachelor() = default;
 
-string Bachelor::get_info() {return _info;}
-
 //sub_class
 Master::Master():Student() {_info = "магистратура";}
 Master::~Master() = default;
-string Master::get_info() {return _info;}
 
 //sub_class
 Graduate::Graduate():Student() {_info = "аспирантура";}
 Graduate::~Graduate() = default;
-string Graduate::get_info() {return _info;}
+
+/* Employee */
+Employee::Employee(){_category="сотрудник";}
+Employee::~Employee() = default;
+
+void Employee::set_exp() {
+    std::cin>>_exp;
+    _exp += " лет";
+}
+
+//sub_class
+Teacher::Teacher():Employee(){_info="сотрудник кафедры";}
+Teacher::~Teacher() = default;
+
+//sub_class
+Assistant::Assistant():Employee() {_info = "учебный отдел";}
+Assistant::~Assistant() = default;
+
+//sub_class
+HouseKeeper::HouseKeeper():Employee() {_info = "АХО";}
+HouseKeeper::~HouseKeeper() = default;
 
 // friend classes
 void InitInstance(PrsPtr &ptr, int row_to_print){
@@ -81,6 +96,7 @@ void InitInstance(PrsPtr &ptr, int row_to_print){
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col += STEP_COL); // перемещение курсора
     std::cout<<ptr->_info;
 }
+
 void PrintInstance(const PrsPtr& ptr, int start_row) {
     int current_col = START_COL;
     move_cursor(START_ROW + start_row * STEP_ROW, START_COL);

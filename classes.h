@@ -42,14 +42,9 @@ protected:
     IPerson& operator=(const IPerson&) = default; // запрет присваивания
 
     virtual void set_id(int id)=0;
-    virtual void set_id(char id[])=0;
     virtual void set_surname()=0;
     virtual void set_name()=0;
     virtual void set_exp()=0;
-
-    virtual string get_exp()=0;
-    virtual string get_category()=0;
-    virtual string get_info()=0;
 
 public:
     static PrsPtr CreateInstance(int target); // функция-фабрика
@@ -67,7 +62,6 @@ public:
 
     void set_name() override;
     void set_id(int id) override;
-    void set_id(char id[]) override;
     void set_surname() override;
 };
 
@@ -78,8 +72,6 @@ public:
     ~Student() override; // открытый деструктор
 protected:
     void set_exp() override;
-    string get_exp() override;
-    string get_category() override;
 };
 
 // класс реализации
@@ -87,8 +79,6 @@ class Bachelor final : public Student{
 public:
     Bachelor();  // открытый конструктор
     ~Bachelor() final; // открытый деструктор
-private:
-    string get_info() final;
 };
 
 // класс реализации
@@ -96,8 +86,6 @@ class Master final : public Student{
 public:
     Master();  // открытый конструктор
     ~Master() final; // открытый деструктор
-private:
-    string get_info() final;
 };
 
 // класс реализации
@@ -105,7 +93,35 @@ class Graduate final : public Student{
 public:
     Graduate();  // открытый конструктор
     ~Graduate() final; // открытый деструктор
-private:
-    string get_info() final;
+};
+
+// класс реализации
+class Employee : public Person{
+public:
+    Employee();  // открытый конструктор
+    ~Employee() override; // открытый деструктор
+protected:
+    void set_exp() override;
+};
+
+// класс реализации
+class Teacher final : public Employee{
+public:
+    Teacher();  // открытый конструктор
+    ~Teacher() final; // открытый деструктор
+};
+
+// класс реализации
+class Assistant final : public Employee{
+public:
+    Assistant();  // открытый конструктор
+    ~Assistant() final; // открытый деструктор
+};
+
+// класс реализации
+class HouseKeeper final : public Employee{
+public:
+    HouseKeeper();  // открытый конструктор
+    ~HouseKeeper() final; // открытый деструктор
 };
 
