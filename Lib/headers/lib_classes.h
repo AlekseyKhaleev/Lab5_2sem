@@ -1,9 +1,15 @@
+/*********************************************************************************************************************
+* Данный модуль содержит определения иерархии классов, предназначенных для работы с таблицей данных отдела кадров
+* (приложение Lab5-2)
+*********************************************************************************************************************/
 #pragma once
 
+/*Подключение модулей*/
 #include <memory>
 #include <string>
 #include <fstream>
 
+/* Константы и макроопределения, используемые для работы с классами */
 namespace Person_const {
 
 #define ESC                     "\x1B" // начало выражения
@@ -11,6 +17,7 @@ namespace Person_const {
 #define move_cursor(row, col)   std::cout << ESC "[" << (row) << ";" << (col) << "H"
 
     const int START_ROW = 15;  // Номер строки для начала ввода/вывода данных таблицы
+    const int START_ROW_FR = 11;  // Номер строки для начала отрисовки таблицы (FR - Frame)
     const int START_COL = 7;   // Позиция курсора для начала ввода/вывода данных таблицы
     const int STEP_COL = 17;  // Шаг для перемещения позиции курсора при выводе таблицы
     const int STEP_ROW = 3;   // Шаг для перемещения по строкам курсора при выводе таблицы
@@ -18,13 +25,11 @@ namespace Person_const {
     const int NUMB_OF_ATTR_WR = 4;
 }
 
+/* Определения для удобства работы с классами */
 class IPerson;
 using PrsPtr = std::shared_ptr<IPerson>;
 using string = std::string;
 using namespace Person_const;
-
-void InitInstance(PrsPtr &ptr, int row_to_print);
-
 
 // интерфейсный класс
 class IPerson{
@@ -63,6 +68,7 @@ public:
     void set_name() override;
     void set_id(int id) override;
     void set_surname() override;
+    void set_exp() override;
 };
 
 // класс реализации

@@ -3,4 +3,10 @@ project(Lab5_2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Lab5_2 Lab5_2.cpp classes.cpp classes.h draw_func.h draw_func.cpp print_func.h print_func.cpp table_func.h table_func.cpp definitions.h SyntaxException.cpp SyntaxException.h)
+find_library(LIB_TO_INCLUDE library /home/kristofer/2_sem_prog/Lab5_2/Lib)
+find_path (LIB_INCLUDES lib_table.h lib_classes.h lib_exceptions.h lib_definitions.h lib_print_func.h lib_draw_func.h /home/kristofer/2_sem_prog/Lab5_2/Lib/headers)
+include_directories(${LIB_INCLUDES})
+
+add_executable(Lab5_2 Lab5_2.cpp lib_classes.cpp lib_table.cpp)
+
+target_link_libraries(Lab5_2 ${LIB_TO_INCLUDE})

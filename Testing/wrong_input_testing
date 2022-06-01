@@ -7,12 +7,12 @@ echo ""
 echo "********************************************************************************"
 echo "                      Test 1: [N] integer, but 1st argument unexpected"
 echo " Used arguments:"
-echo " ../debug/Lab3_2 -o 12 test_file"
+echo " ../debug/Lab5_2 -o 12 test_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
 echo ""
-../debug/Lab3_2 -o 12 test_file
+../debug/Lab5_2 -o 12 test_file
 echo " Press any key to continue: "
 read -n 1
 
@@ -21,12 +21,12 @@ echo ""
 echo "********************************************************************************"
 echo "                         Test 2: [N] argument not an integer"
 echo " Used arguments:"
-echo " ../debug/Lab3_2 -o qweqwe 123"
+echo " ../debug/Lab5_2 -o qweqwe 123"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
 echo ""
-../debug/Lab3_2 -o openmode 123
+../debug/Lab5_2 -o openmode 123
 echo " Press any key to continue: "
 read -n 1
 
@@ -36,22 +36,22 @@ echo "**************************************************************************
 echo "                  Test 3: [N] argument less then or equal to 0"
 echo "********************************************************************************"
 echo " 3.1) Used arguments:"
-echo " ../debug/Lab3_2 -c -123 test_file"
+echo " ../debug/Lab5_2 -c -123 test_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -c -123 test_file
+../debug/Lab5_2 -c -123 test_file
 echo " Press any key to continue: "
 read -n 1
 echo ""
 echo "********************************************************************************"
 echo " 3.2) Used arguments:"
-echo " ../debug/Lab3_2 -r 0 test_file"
+echo " ../debug/Lab5_2 -r 0 test_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
 echo ""
-../debug/Lab3_2 -r 0 test_file
+../debug/Lab5_2 -r 0 test_file
 echo " Press any key to continue: "
 read -n 1
 
@@ -61,21 +61,21 @@ echo "**************************************************************************
 echo "                      Test 4: [N] is floating point number"
 echo "********************************************************************************"
 echo " 4.1) Used arguments:"
-echo " ../debug/Lab3_2 -c 3.2 test_file"
+echo " ../debug/Lab5_2 -c 3.2 test_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -c 3.2 test_file
+../debug/Lab5_2 -c 3.2 test_file
 echo " Press any key to continue: "
 read -n 1
 echo ""
 echo "********************************************************************************"
 echo " 4.2) Used arguments:"
-echo " ../debug/Lab3_2 -c 3,2 test_file"
+echo " ../debug/Lab5_2 -c 3,2 test_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -c 3,2 test_file
+../debug/Lab5_2 -c 3,2 test_file
 echo " Press any key to continue: "
 read -n 1
 
@@ -84,11 +84,11 @@ echo ""
 echo "********************************************************************************"
 echo "                      Test 5: Trying to open file that doesn't exist "
 echo " Used arguments:"
-echo " ../debug/Lab3_2 -r 5 qweqweqweqw"
+echo " ../debug/Lab5_2 -r 5 qweqweqweqw"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -r 5 qweqweqweqw
+../debug/Lab5_2 -r 5 qweqweqweqw
 echo " Press any key to continue: "
 read -n 1
 
@@ -97,11 +97,11 @@ echo ""
 echo "********************************************************************************"
 echo "                      Test 6: Trying to read empty file"
 echo " Used arguments:"
-echo " ../debug/Lab3_2 -r 5 empty_file"
+echo " ../debug/Lab5_2 -r 5 empty_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -r 5 empty_file
+../debug/Lab5_2 -r 5 empty_file
 echo " Press any key to continue: "
 read -n 1
 
@@ -110,11 +110,11 @@ echo ""
 echo "********************************************************************************"
 echo "           Test 7: Trying to open a file created in another application"
 echo " Used arguments:"
-echo " ../debug/Lab3_2 -r 5 wrong_file"
+echo " ../debug/Lab5_2 -r 5 wrong_file"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -r 5 wrong_file
+../debug/Lab5_2 -r 5 wrong_file
 echo " Press any key to continue: "
 read -n 1
 
@@ -124,32 +124,32 @@ echo "**************************************************************************
 echo "                        Test 8: wrong number of arguments"
 echo "********************************************************************************"
 echo " 8.1) No arguments.Used arguments:"
-echo " ../debug/Lab3_2"
+echo " ../debug/Lab5_2"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2
+../debug/Lab5_2
 echo " Press any key to continue: "
 read -n 1
 echo ""
 echo "********************************************************************************"
 echo " 8.2) To many arguments. Creating. Used arguments:"
-echo " ../debug/Lab3_2 -c 12 test_file mode"
+echo " ../debug/Lab5_2 -c 12 test_file mode"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
 echo ""
-../debug/Lab3_2 -c 12 test_file mode
+../debug/Lab5_2 -c 12 test_file mode
 echo " Press any key to continue: "
 read -n 1
 echo ""
 echo "********************************************************************************"
 echo " 8.3) Too many arguments. Reading. Used arguments:"
-echo " ../debug/Lab3_2 -r 12 test_file mode"
+echo " ../debug/Lab5_2 -r 12 test_file mode"
 echo "********************************************************************************"
 echo ""
 echo " Terminal out: "
-../debug/Lab3_2 -r 12 test_file mode
+../debug/Lab5_2 -r 12 test_file mode
 echo ""
 echo " Testing complete"
 echo " Results saved in wrong_input_testing.log"

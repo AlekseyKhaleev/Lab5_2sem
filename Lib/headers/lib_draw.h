@@ -6,7 +6,7 @@
 #pragma once
 
 /* Подключение модулей */
-#include "definitions.h"
+#include "lib_definitions.h"
 #include <string>
 
 /* Получение данных о текущих размерах окна терминала и присваивание их соответствующим переменным по ссылкам */

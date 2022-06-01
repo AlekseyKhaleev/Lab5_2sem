@@ -1,9 +1,10 @@
 
-#include "classes.h"
+#include "lib_classes.h"
 #include <string>
 #include <iostream>
 #include <vector>
 #include <cstring>
+#include "lib_exceptions.h"
 
 using namespace Person_const;
 
@@ -15,7 +16,7 @@ PrsPtr IPerson::CreateInstance(int id){
         case 21: return std::make_shared<Bachelor>();
         case 22: return std::make_shared<Master>();
         case 23: return std::make_shared<Graduate>();
-        default: throw std::exception();
+        default: throw SyntaxException("Enter correct ID or press 'h' for help", 10);
     }
 }
 
@@ -28,74 +29,105 @@ Person::~Person() = default;
 void Person::set_surname() {std::cin >> _surname;}
 void Person::set_name() {std::cin>>_name;}
 void Person::set_id(int id) {_id = std::to_string(id);}
+void Person::set_exp(){
+    int mark{0}, check{};
+    while (!mark){
+        try{
+            std::cin>>_exp;
+            try {
+                check = std::stoi(_exp); // попытка привести к целому типу полученного аргумента
+            } catch (std::exception &stoi_err) {
+                throw SyntaxException("Course/degree must be an integer between 0 and 100", 12);
+            }
+            if(check <=0 || check >= 100 || std::to_string(check) != _exp){
+                throw SyntaxException("Course/degree must be an integer between 0 and 100", 12);
+            } else mark = 1;
+        }catch (SyntaxException &ex){
+            ex.description();
+        }
+    }
+}
 
 /* Student */
-Student::Student(){_category="студент";}
+Student::Student(){_category="student";}
 Student::~Student() = default;
 
-void Student::set_exp() {
-    std::cin>>_exp;
-    _exp += " курс";
+void Student::set_exp(){
+    Person::set_exp();
+    _exp += " course";
+    move_cursor(START_ROW_FR - 1, 0);
+    clear_row();
 }
 
 //sub_class
-Bachelor::Bachelor():Student(){_info="бакалавриат";}
+Bachelor::Bachelor():Student(){_info="bachelor";}
 Bachelor::~Bachelor() = default;
 
 //sub_class
-Master::Master():Student() {_info = "магистратура";}
+Master::Master():Student() {_info = "master";}
 Master::~Master() = default;
 
 //sub_class
-Graduate::Graduate():Student() {_info = "аспирантура";}
+Graduate::Graduate():Student() {_info = "graduate";}
 Graduate::~Graduate() = default;
 
 /* Employee */
-Employee::Employee(){_category="сотрудник";}
+Employee::Employee(){_category="employee";}
 Employee::~Employee() = default;
 
 void Employee::set_exp() {
-    std::cin>>_exp;
-    _exp += " лет";
+    Person::set_exp();
+    _exp += (std::stoi(_exp)==1?" year":" years");
 }
 
 //sub_class
-Teacher::Teacher():Employee(){_info="сотрудник кафедры";}
+Teacher::Teacher():Employee(){_info="CST dept";}
 Teacher::~Teacher() = default;
 
 //sub_class
-Assistant::Assistant():Employee() {_info = "учебный отдел";}
+Assistant::Assistant():Employee() {_info = "Training dept";}
 Assistant::~Assistant() = default;
 
 //sub_class
-HouseKeeper::HouseKeeper():Employee() {_info = "АХО";}
+HouseKeeper::HouseKeeper():Employee() {_info = "HK service";}
 HouseKeeper::~HouseKeeper() = default;
 
 // friend classes
 void InitInstance(PrsPtr &ptr, int row_to_print){
+
     static std::vector<int> IDs;
-    int id, current_col{START_COL};
-    move_cursor(START_ROW + row_to_print * STEP_ROW, START_COL);
-    std::cin >> id;
-    for(auto &elem:IDs){
-        if (elem == id) throw std::exception();
+    int current_col{START_COL};
+    string id;
+    while(ptr == nullptr) {
+        try {
+            move_cursor(START_ROW + row_to_print * STEP_ROW, START_COL);
+            std::cin >> id;
+            if(id.size()!= 5) throw SyntaxException("Enter correct ID or press 'h' for help", 10);
+            for (auto &elem: IDs) {
+                if (elem == std::stoi(id)) throw SyntaxException("The ID is already exist!", 11);
+            }
+            ptr = IPerson::CreateInstance(std::stoi(id));
+        } catch (SyntaxException &ex) {
+            ex.description();
+        }
     }
-    ptr = IPerson::CreateInstance(id);
-    IDs.push_back(id);
-    ptr->set_id(id);
+
+    IDs.push_back(std::stoi(id));
+    ptr->set_id(std::stoi(id));
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col += STEP_COL); // перемещение курсора
     ptr->set_surname();
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col += STEP_COL); // перемещение курсора
     ptr->set_name();
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col += STEP_COL); // перемещение курсора
-    std::cout<<ptr->_category;
+    std::cout << ptr->_category;
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col += STEP_COL); // перемещение курсора
     ptr->set_exp();
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col); // перемещение курсора
-    std::cout<<ptr->_exp;
+    std::cout << ptr->_exp;
     move_cursor(START_ROW + row_to_print * STEP_ROW, current_col += STEP_COL); // перемещение курсора
-    std::cout<<ptr->_info;
+    std::cout << ptr->_info;
 }
+
 
 void PrintInstance(const PrsPtr& ptr, int start_row) {
     int current_col = START_COL;

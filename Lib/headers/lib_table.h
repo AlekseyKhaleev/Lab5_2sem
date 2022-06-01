@@ -7,8 +7,8 @@
 /* Подключение модулей*/
 #include <array>
 #include <fstream>
-#include "definitions.h"
-#include "classes.h"
+#include "lib_definitions.h"
+#include "lib_classes.h"
 
 
 /* Функция вызова исключения связанного с выделением памяти для передачи в set_new_handler() */
