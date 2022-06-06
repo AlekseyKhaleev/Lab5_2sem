@@ -33,6 +33,30 @@ using namespace Person_const;
 
 // интерфейсный класс
 class IPerson{
+private:
+    static PrsPtr CreateInstance(int target); // функция-фабрика
+protected:
+    virtual ~IPerson() = default; // защищенный деструктор
+    IPerson& operator=(const IPerson&) = default; // запрет присваивания
+
+    virtual void set_id(int id)=0;
+    virtual void set_surname()=0;
+    virtual void set_name()=0;
+    virtual void set_exp()=0;
+    virtual string get_exp()=0;
+    virtual string get_category()=0;
+    virtual string get_info()=0;
+    virtual string** get_attr_wr()=0;
+
+public:
+    static PrsPtr InitInstance(int row_to_print);
+    static PrsPtr ReadInstance(std::fstream &fd);
+    virtual void WriteInstance(std::fstream &fd)=0;
+    virtual void PrintInstance(int start_row)=0;
+};
+
+// класс реализации
+class Person : public IPerson{
 protected:
     string _id;
     string _surname;
@@ -42,25 +66,6 @@ protected:
     string _info;
     string* _attributes[NUMB_OF_ATTR]{&_id,&_surname, &_name, &_category, &_exp, &_info };
     string* _attributes_wr[NUMB_OF_ATTR_WR]{&_id,&_surname, &_name, &_exp};
-
-    virtual ~IPerson() = default; // защищенный деструктор
-    IPerson& operator=(const IPerson&) = default; // запрет присваивания
-
-    virtual void set_id(int id)=0;
-    virtual void set_surname()=0;
-    virtual void set_name()=0;
-    virtual void set_exp()=0;
-
-public:
-    static PrsPtr CreateInstance(int target); // функция-фабрика
-    friend void WriteInstance(PrsPtr &ptr, std::fstream &fd);
-    friend void ReadInstance(PrsPtr &ptr, std::fstream &fd);
-    friend void PrintInstance(const PrsPtr &ptr, int start_row);
-    friend void InitInstance(PrsPtr &ptr, int row_to_print);
-};
-
-// класс реализации
-class Person : public IPerson{
 public:
     Person();  // открытый конструктор
     ~Person() override; // открытый деструктор
@@ -69,6 +74,12 @@ public:
     void set_id(int id) override;
     void set_surname() override;
     void set_exp() override;
+    string get_exp() override;
+    string get_info() override;
+    string get_category() override;
+    string** get_attr_wr() override;
+    void WriteInstance(std::fstream &fd) override;
+    void PrintInstance(int start_row) override;
 };
 
 // класс реализации

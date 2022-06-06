@@ -114,7 +114,7 @@ void PrintTable(PrsPtr Persons[], int rows_request, int row_index) {
     ****************************************************************************************************************/
     int total_rows = rows_request > MAX_ROWS ? MAX_ROWS : rows_request; // количество строк с учетом ограничений
     for (int i = 0, j = row_index; i < total_rows; i++, j++) {
-        PrintInstance(Persons[j], i);
+        Persons[j]->PrintInstance(i);
     }
 }
 
@@ -179,8 +179,8 @@ int CreateTable(char *argv[], std::fstream &table_out, int rows_request) {
             if (i < MAX_ROWS)
                 /* Если не достигнута последняя строка в отображаемой таблице */
             {
-                InitInstance(Persons[i], i); // ввод данных в нужных ячейках/инициализация экземпляра
-                WriteInstance(Persons[i], table_out); // запись экземпляра класса в файл
+                Persons[i] = IPerson::InitInstance(i); // ввод данных в нужных ячейках/инициализация экземпляра
+                Persons[i]->WriteInstance(table_out); // запись экземпляра класса в файл
             } else
                 /* Если достигнута последняя строка в отображаемой таблице */
             {
@@ -189,8 +189,8 @@ int CreateTable(char *argv[], std::fstream &table_out, int rows_request) {
                 /* Заполнение таблицы до предпоследней строки включительно */
                 PrintTable(Persons, MAX_ROWS-1, row_index);
                 /* Инициализация очередного экземпляра класса, курсор ввода в последней строке */
-                InitInstance(Persons[i], MAX_ROWS - 1);
-                WriteInstance(Persons[i],table_out); // запись экземпляра класса в файл
+                Persons[i] = IPerson::InitInstance( MAX_ROWS - 1);
+                Persons[i]->WriteInstance(table_out); // запись экземпляра класса в файл
             }
         }
     } catch (std::exception &e) { // Обработка исключения, связанного с выделением динамической памяти
@@ -246,7 +246,7 @@ void ViewTable(char *argv[], std::fstream &table_in, int rows_request, int row_i
         int rows_to_print = rows_request < real_rows? rows_request:real_rows; // определение количества строк для вывода
         PrsPtr Persons[rows_to_print]; // объявление массива указателей интерфейсного класса
         for (int i = 0; i < rows_to_print; i++) {
-            ReadInstance(Persons[i],table_in); // чтение данных таблицы в массив экземпляров класса Persons
+            Persons[i] = IPerson::ReadInstance(table_in); // чтение данных таблицы в массив экземпляров класса Persons
         }
         GenerateTablePage(Persons, argv, rows_to_print, real_rows, row_index); // вывод основной страницы программы
         int mark = true; // флаг-индикатор продолжения/завершения программы
