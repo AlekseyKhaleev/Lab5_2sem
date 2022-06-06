@@ -126,7 +126,7 @@ void Person::set_name() { std::cin >> _name; }
 void Person::set_id(int id) { _id = std::to_string(id); }
 
 void Person::set_exp() {
-    int mark{0}, check{};
+    int mark{0}, check{0};
     while (!mark) {
         try {
             std::cin >> _exp;

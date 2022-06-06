@@ -33,11 +33,10 @@ using namespace Person_const;
 
 // интерфейсный класс
 class IPerson{
-private:
-    static PrsPtr CreateInstance(int target); // функция-фабрика
 protected:
     virtual ~IPerson() = default; // защищенный деструктор
     IPerson& operator=(const IPerson&) = default; // запрет присваивания
+    [[nodiscard]] static PrsPtr CreateInstance(int target); // функция-фабрика
 
     virtual void set_id(int id)=0;
     virtual void set_surname()=0;
@@ -49,8 +48,8 @@ protected:
     virtual string** get_attr_wr()=0;
 
 public:
-    static PrsPtr InitInstance(int row_to_print);
-    static PrsPtr ReadInstance(std::fstream &fd);
+    [[nodiscard]]static PrsPtr InitInstance(int row_to_print);
+    [[nodiscard]]static PrsPtr ReadInstance(std::fstream &fd);
     virtual void WriteInstance(std::fstream &fd)=0;
     virtual void PrintInstance(int start_row)=0;
 };
